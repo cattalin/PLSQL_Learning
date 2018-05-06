@@ -1,0 +1,35 @@
+clear screen;
+
+SET SERVEROUTPUT ON
+
+
+CREATE OR REPLACE PROCEDURE list_employees(salary_raise IN NUMBER)
+IS
+
+  CURSOR MY_CURSOR IS
+  SELECT SUM(SALARY) AS TOTAL_SALARY, DEPARTMENT_ID
+  FROM EMPLOYEES
+  WHERE EMPLOYEES.SALARY <= 10000
+  GROUP BY DEPARTMENT_ID;
+--  ORDER BY SALARY DESC;
+
+BEGIN
+
+  FOR employee IN my_cursor LOOP
+    
+    DBMS_OUTPUT.PUT_LINE(' -- ' || employee.TOTAL_SALARY || ' -- ' || employee.DEPARTMENT_ID);
+    
+  END LOOP;
+
+END list_employees;
+/
+
+
+DECLARE
+
+BEGIN
+  
+  list_employees(100);
+  
+END;
+/

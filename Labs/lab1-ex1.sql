@@ -2,6 +2,7 @@ clear screen;
 --  WITH LOCAL VARIABLE
 
 SET SERVEROUTPUT ON
+
 DECLARE 
   v_city_name locations.city%TYPE := '';
 BEGIN

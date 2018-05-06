@@ -1,0 +1,33 @@
+clear screen;
+
+SET SERVEROUTPUT ON
+
+
+CREATE OR REPLACE PROCEDURE list_employees(job_id IN EMPLOYEES.JOB_ID%TYPE)
+IS
+
+  CURSOR MY_CURSOR IS
+  SELECT FIRST_NAME
+  FROM EMPLOYEES
+  WHERE EMPLOYEES.JOB_ID = job_id;
+
+BEGIN
+
+  FOR employee IN my_cursor LOOP
+    
+    DBMS_OUTPUT.PUT_LINE(EMPLOYEE.FIRST_NAME);
+    
+  END LOOP;
+
+END list_employees;
+/
+
+
+DECLARE
+
+BEGIN
+  
+  list_employees('AD_PRES');
+  
+END;
+/
